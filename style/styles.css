@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
+:root {
+  --alpha: 1;
+  --alpha-2: 0.8;
+  --alpha-3: 0.6;
+  --alpha-4: 0.4;
+  --alpha-5: 0.2;
+  --fontFw: 200;
+  --fontFw-1: 300;
+  --fontFw-2: 400;
+  --fontFw-3: 500;
+  --fontFw-4: 700;
+  --fontFw-5: 900;
+  --max-width-mob-1: 380px;
+  --max-width-mob: 480px;
+  --max-width-tab: 650px;
+  --max-width-desktop: 900px;
+  --max-width-desktop: 1440px;
+  --major-white: #ffffff;
+  --major-black: #000000;
+  --button-pad-1: 1em 2em;
+  --button-pad-2: 0.5em 1em;
+  --button-pad-3: 0.5em 2em;
+  --green: hsl(163, 100%, 32%);
+  --bg:hsl(228, 7%, 14%);
+  --txt: hsl(228, 2%, 52%);
+}
+
+.light {
+  --bg: #fafafa;
+  --button-area: #F9F9F9;
+  --button-bg: #F7F7F7;
+  --accent: #2EFBD5;
+  --buttonTxt: #2A2E37;
+  --operators: #EB6565;
+  --themeSect: #E5E5E5;
+  --icon: #4B4E56;
+  --iconStroke: #E5E5E5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1.5;
+  background-color: var(--bg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 100vh;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+}
+
+textarea {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  -webkit-box-flex: 40%;
+      -ms-flex: 40%;
+          flex: 40%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  resize: none;
+  color: var(--buttonTxt);
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: var(--bg);
+  font-weight: 700;
+}
+
+textarea :focus {
+  outline: none;
+}
+
+.button--area {
+  -webkit-box-flex: 50%;
+      -ms-flex: 50%;
+          flex: 50%;
+  background-color: var(--button-bg);
+  -ms-grid-row-align: stretch;
+      align-self: stretch;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (40px)[4];
+      grid-template-columns: repeat(4, 40px);
+  grid-auto-rows: 40px;
+  gap: 2rem;
+  place-content: center;
+}
+
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  background-color: var(--button-bg);
+  color: var(--buttonTxt);
+  font-family: 'Roboto Condensed', sans-serif;
+  cursor: pointer;
+}
+
+button:hover {
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.accent--color {
+  color: var(--accent);
+}
+
+.operator {
+  color: var(--operators);
+  font-size: 1.2rem;
+}
+
+.theme--section {
+  position: absolute;
+  margin-top: 0.5em;
+  width: 80px;
+  height: 40px;
+  background-color: var(--themeSect);
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.theme--section button {
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  margin: 0 0.2em;
+  background-color: unset;
+}
+
+.theme--section button svg path {
+  stroke: var(--iconStroke);
+}
+
+.active svg path {
+  fill: var(--icon);
+}
+
+.dark {
+  --bg: #22252D;
+  --button-area: #292D36;
+  --button-bg: #272B33;
+  --accent: #2EFBD5;
+  --buttonTxt: #ffffff;
+  --operators: #EB6565;
+  --themeSect: #292D36;
+  --icon: #ffffff;
+  --iconStroke: #ffffff;
+}
+/*# sourceMappingURL=styles.css.map */
