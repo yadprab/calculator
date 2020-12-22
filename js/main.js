@@ -23,30 +23,36 @@ const calcFn = () => {
 const calc = (e) => {
   const result = document.querySelector("#result");
 
+  const displayArea = document.querySelector(".text--area");
+
   const target = e.target;
 
   const type = target.dataset.key;
 
-  executeFn(result, target, type);
+  displayArea.dataset.previousKeyType = type;
+
+  const value = result.textContent;
+
+  const previousType = displayArea.dataset.previousKeyType;
+
+  const opData = {
+    previousType,
+    value,
+    type,
+    target,
+    result,
+  };
+
+  executeFn(opData);
 };
 
-const executeFn = (ele, target, type) => {
-  const value = target.textContent;
-
-  const previousValue = ele.textContent;
-
-  const textarea = document.querySelector(".text--area");
-
-  textarea.dataset.previousType = type;
-
+const executeFn = ({ previousType, value, type, target, result }) => {
   if (type == "number") {
-    if (
-      ele.textContent === "" ||
-      textarea.dataset.previousType === "operator"
-    ) {
-      ele.textContent = value;
-    } else {
-      ele.textContent = previousValue + value;
+
+    if (value==='') {
+
+        result.textContent = target.value
+        
     }
   }
 };
