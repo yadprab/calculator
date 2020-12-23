@@ -96,28 +96,46 @@ body {
   width: 100%;
   max-width: 380px;
   position: relative;
+  margin: 3em 0;
 }
 
-textarea {
+.text--area {
   -ms-flex-item-align: stretch;
-      -ms-grid-row-align: stretch;
       align-self: stretch;
   -webkit-box-flex: 40%;
       -ms-flex: 40%;
           flex: 40%;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: none;
-  resize: none;
   color: var(--buttonTxt);
   font-family: 'Roboto Condensed', sans-serif;
   background-color: var(--bg);
   font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 1em;
+  font-size: 2rem;
 }
 
-textarea :focus {
-  outline: none;
+#history {
+  font-size: 1.5rem;
+  -webkit-transition: -webkit-transform 0.4s ease-in;
+  transition: -webkit-transform 0.4s ease-in;
+  transition: transform 0.4s ease-in;
+  transition: transform 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-animation: res 0.4s ease-in forwards;
+          animation: res 0.4s ease-in forwards;
 }
 
 .button--area {
@@ -193,12 +211,39 @@ button:hover {
   background-color: unset;
 }
 
-.theme--section button svg path {
+svg {
+  pointer-events: none;
+}
+
+svg path {
   stroke: var(--iconStroke);
+  fill: rgba(0, 0, 0, 0.25);
 }
 
 .active svg path {
   fill: var(--icon);
+}
+
+@-webkit-keyframes res {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes res {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .dark {

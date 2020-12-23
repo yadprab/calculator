@@ -25,38 +25,131 @@ const calc = (e) => {
 
   const displayArea = document.querySelector(".text--area");
 
+  const history = document.querySelector("#history");
+
+  const operators = document.querySelectorAll("[data-key=operator]");
+
   const target = e.target;
 
-  const type = target.dataset.key;
+  const { key } = target.dataset;
 
-  displayArea.dataset.previousKeyType = type;
+  const { previousKeyType } = displayArea.dataset;
 
   const value = result.textContent;
 
-  const previousType = displayArea.dataset.previousKeyType;
+  const keyValue = target.value;
 
   const opData = {
-    previousType,
+    previousKeyType,
+    key,
+    keyValue,
     value,
-    type,
     target,
     result,
+    history,
+    displayArea,
+    operators,
+    target
   };
 
   executeFn(opData);
 };
 
-const executeFn = ({ previousType, value, type, target, result }) => {
-  if (type == "number") {
+const executeFn = (obj) => {
+  const {
+    previousKeyType,
+    key,
+    keyValue,
+    value,
+    result,
+    history,
+    displayArea,
+    operators,
+    target
+  } = obj;
 
-    if (value==='') {
+  displayArea.dataset.previousKeyType = key;
 
-        result.textContent = target.value
-        
-    }
+  const operatorsArr = [...operators];
+
+
+
+
+  if (previousKeyType === undefined && key === "operator") {
+    operatorsArr.forEach((operator) => operator.setAttribute("disabled", ""));
+  } else if (key == "number") {
+    operatorsArr.forEach((operator) => operator.removeAttribute("disabled"));
+     value === "" || previousKeyType == "operator"
+      ? (result.textContent = keyValue)
+      : (result.textContent = `${value}${keyValue}`);
+  } else if (previousKeyType === "number" && key === "operator") {
+ 
+     target.classList.add('selected')
+  
+    history.textContent = value
+
+    
+   
+  } else if (previousKeyType === "operator" && key === "operator") {
+    operatorsArr.forEach((operator) => operator.setAttribute("disabled", ""));
+  } else if (key == "equal") {
+      const calcObj = {};
+   const selected = document.querySelector('.selected');
+
+    selected === null
+      ? (calcObj)
+      : ((calcObj["firstNumber"] = history.textContent),
+        (calcObj["nextNumber"] = value),
+        (calcObj["operator"] = selected.dataset.operator));
+
+     
+        calculation(calcObj, result, history);
+  
   }
+
 };
 
+const calculation =(obj, result, history)=>{
+
+  if (Object.keys(obj).length===0) {
+
+    return;
+  }
+
+  const{firstNumber, nextNumber, operator}= obj;
+
+  switch (operator) {
+    case "plus":
+     result.textContent = parseInt(firstNumber) + parseInt(nextNumber);
+
+     history.textContent = result.textContent
+     console.log(operator);
+      break;
+    case "subtract":
+     result.textContent = parseInt(firstNumber) - parseInt(nextNumber);
+
+     history.textContent = result.textContent;
+        console.log(operator);
+      break;
+    case "divide":
+     result.textContent = parseInt(firstNumber) / parseInt(nextNumber);
+
+     history.textContent = result.textContent;
+     
+      break;
+    case "multiply":
+      result.textContent = parseInt(firstNumber) * parseInt(nextNumber);
+
+      history.textContent = result.textContent;
+      break;
+
+    default:
+      break;
+  } 
+
+}
+
+   
 /** theme functions area  */
 const themeFn = (e, ele) => {
   const themeId = e.target.id;
