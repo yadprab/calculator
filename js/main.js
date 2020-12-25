@@ -73,38 +73,57 @@ const executeFn = (obj) => {
   const operatorsArr = [...operators];
 
 
+if (previousKeyType === undefined && key === "operator") {
 
-
-  if (previousKeyType === undefined && key === "operator") {
     operatorsArr.forEach((operator) => operator.setAttribute("disabled", ""));
-  } else if (key == "number") {
+
+  }else if(key=='clear'){
+
+     result.textContent='';
+     
+     history.textContent='';
+
+  }else if (key == "number") {
+
     operatorsArr.forEach((operator) => operator.removeAttribute("disabled"));
+
      value === "" || previousKeyType == "operator"
       ? (result.textContent = keyValue)
       : (result.textContent = `${value}${keyValue}`);
+
   } else if (previousKeyType === "number" && key === "operator") {
  
      target.classList.add('selected')
-  
-    history.textContent = value
 
+     displayArea.dataset.firstNumber= value;
     
    
   } else if (previousKeyType === "operator" && key === "operator") {
-    operatorsArr.forEach((operator) => operator.setAttribute("disabled", ""));
-  } else if (key == "equal") {
-      const calcObj = {};
-   const selected = document.querySelector('.selected');
 
+    operatorsArr.forEach((operator) => operator.setAttribute("disabled", ""));
+
+  }else if (previousKeyType == "equal" && key === "operator") {
+
+    target.classList.add("selected");
+
+    displayArea.dataset.firstNumber = value;
+      
+  } else if (key == "equal") {
+
+    const calcObj = {};
+
+    const selected = document.querySelector(".selected");
+    
     selected === null
-      ? (calcObj)
-      : ((calcObj["firstNumber"] = history.textContent),
+      ? calcObj
+      : ((calcObj["firstNumber"] = displayArea.dataset.firstNumber),
         (calcObj["nextNumber"] = value),
         (calcObj["operator"] = selected.dataset.operator));
 
-     
-        calculation(calcObj, result, history);
-  
+
+    calculation(calcObj, result, history);
+
+     operatorsArr.forEach((operator) => operator.classList.remove("selected"));
   }
 
 };
@@ -123,13 +142,13 @@ const calculation =(obj, result, history)=>{
      result.textContent = parseInt(firstNumber) + parseInt(nextNumber);
 
      history.textContent = result.textContent
-     console.log(operator);
+   
       break;
     case "subtract":
      result.textContent = parseInt(firstNumber) - parseInt(nextNumber);
 
      history.textContent = result.textContent;
-        console.log(operator);
+     
       break;
     case "divide":
      result.textContent = parseInt(firstNumber) / parseInt(nextNumber);
